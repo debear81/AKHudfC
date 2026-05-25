@@ -8,32 +8,32 @@ C_AbsMax        Returns the absolute maximum (farthest from zero) of the entered
 
 C_AbsMin        Returns the absolute minimum (closest from zero) of theentered numbers/references.
 
-C_BiggerNumber  Function to track the milliseconds required to count up to a number.
+C_BiggerNumber__Function to track the milliseconds required to count up to a number.
                     
-C_ChangeCase    Changes the case (upper, lower, sentence) of a string.	
+C_ChangeCase____Changes the case (upper, lower, sentence) of a string.	
 
-C_ClampIt       Returns the specified value if it falls within the specified range, otherwise returns a limiting value.	
+C_ClampIt_______Returns the specified value if it falls within the specified range, otherwise returns a limiting value.	
                     
-C_CountUnique   Counts the number of unique cell values in a range.	
+C_CountUnique___Counts the number of unique cell values in a range.	
 
-C_FootToMix     Converts a number (assumed to be feet) to a mixed dimension string (ft-in).				
+C_FootToMix_____Converts a number (assumed to be feet) to a mixed dimension string (ft-in).				
                     
-C_Formula       Similar to FORMULATEXT function, returns string of referenced cell's equation, showing values.
+C_Formula_______Similar to FORMULATEXT function, returns string of referenced cell's equation, showing values.
                     
-C_InchToMix     Converts a number (assumed to be inch) to a mixed dimension string (ft-in).	
+C_InchToMix_____Converts a number (assumed to be inch) to a mixed dimension string (ft-in).	
                     
-C_Indirect      Similar to INDIRECT function, but could access closed workbooks.
+C_Indirect______Similar to INDIRECT function, but could access closed workbooks.
 
-C_IsBetween     Returns a true/false boolean, indicating if a value falls within a specified range.	
+C_IsBetween_____Returns a true/false boolean, indicating if a value falls within a specified range.	
                     
-C_Linterp       Performs a linear interpolation, based on two known points (X, Y).
+C_Linterp_______Performs a linear interpolation, based on two known points (X, Y).
 
-C_MixToInch     Converts a mixed unit (ft-in) string to a decimal number of inches.	
+C_MixToInch_____Converts a mixed unit (ft-in) string to a decimal number of inches.	
 
-C_Mmatch        Returns the matching row number of a table, based on multiple criteria.
+C_Mmatch________Returns the matching row number of a table, based on multiple criteria.
                     
-C_RevStr        Reverses the order of a specified string.
+C_RevStr________Reverses the order of a specified string.
 
-C_SheetName     Returns the worksheet name of the active cell.
+C_SheetName_____Returns the worksheet name of the active cell.
 
-C_WorkbookName  Returns the workbook name of the active cell.					
+C_WorkbookName__Returns the workbook name of the active cell.					
