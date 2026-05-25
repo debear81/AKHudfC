@@ -24,13 +24,6 @@ public static class UnitConversion
         // return ToMix(number, fracRnd, txtBool);
         string strMix = ToMix(num, rnd, txt);
 
-        //string footPart, inchPart;
-        //SplitFootInch(strMix, out footPart, out inchPart);
-
-        //string mixFrac;
-        //inchPart = DecimalToFraction(inchPart, out mixFrac);
-
-
         return strMix;
 
     } // -------------------- End of Function --------------------
@@ -86,18 +79,32 @@ public static class UnitConversion
         input = input.Replace("\"", "").Replace("inches", "").Replace("inch", "").Replace("in", "").Trim();
 
         // Fall back to original logic (e.g., "5' 10.5\"")
-        int footMark = input.IndexOf('\'');
-        if (footMark < 0) footMark = input.IndexOf("ft");
-        if (footMark < 0) footMark = input.IndexOf("foot");
-        if (footMark < 0) footMark = input.IndexOf("feet");
+        // int footMark = input.IndexOf('\''); // this looks for the index of a character
+        int footMark = input.IndexOf("'"); // this looks for the index of a string
+        int markerLength = 1;
 
+        if (footMark < 0)
+        {
+            footMark = input.IndexOf("ft");
+            markerLength = 2;
+        }
+        if (footMark < 0)
+        {
+            footMark = input.IndexOf("foot");
+            markerLength = 4;
+        }
+        if (footMark < 0)
+        {
+            footMark = input.IndexOf("feet");
+            markerLength = 4;
+        }
         if (footMark >= 0)
         {
             string footPart = input.Substring(0, footMark).Trim();
             double.TryParse(footPart, out feet);
         }
 
-        int inchStart = (footMark >= 0) ? footMark + 1 : 0;
+        int inchStart = (footMark >= 0) ? footMark + markerLength : 0;
         string inchPart = input.Substring(inchStart).Trim();
 
         // Remove any dashes before the first digit
@@ -108,31 +115,6 @@ public static class UnitConversion
             string after = inchPart.Substring(firstDigitIdx);
             inchPart = before + after;
             inchPart = inchPart.Trim();
-        }
-
-        // Case: whole inches and fraction separated by dash or space
-        if (inchPart.Contains("-") || inchPart.Contains(" "))
-        {
-            char separator = inchPart.Contains("-") ? '-' : ' ';
-            var split = inchPart.Split(new[] { separator }, 2);
-
-            if (split.Length == 2 &&
-                double.TryParse(split[0], out double whole) &&
-                TryParseFraction(split[1], out double frac))
-            {
-                inches = whole + frac;
-            }
-        }
-
-        // Case: only a fraction
-        else if (inchPart.Contains("/"))
-        {
-            TryParseFraction(inchPart, out inches);
-        }
-        // Case: plain decimal number
-        else
-        {
-            double.TryParse(inchPart, out inches);
         }
 
         inches = ParseInchesFromString(inchPart);
@@ -188,7 +170,7 @@ public static class UnitConversion
 
             return true;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             error = "Invalid input.";
             return false;

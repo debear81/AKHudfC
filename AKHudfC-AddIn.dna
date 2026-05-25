@@ -5,7 +5,7 @@
 		<Name>AKHudfC Add-In</Name>
 		<Description>User-defined functions written in C# for engineering calculations.</Description>
 		<Author>AKH</Author>
-		<Version>Jun. 2025</Version>
+		<Version>May 2026</Version>
 	</AddIn>
 	
 	<DisableAssemblyLoadDiagnostics>false</DisableAssemblyLoadDiagnostics>

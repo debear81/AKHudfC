@@ -87,11 +87,78 @@ namespace AKHudfC
             }
             return AbsMax;
         } // -------------------- END of Function --------------------
+		
+		
+        // ==================== START of Function ====================
+        // Description for IntelliSense Tool Tips
+        [ExcelFunction(Description = "Limits a value to a specified minimum and maximum.")]
+        public static double C_ClampIt(
+			[ExcelArgument(Name ="Value",Description ="Value to compare against min & max.")] double dblValue,
+			[ExcelArgument(Name ="MinValue",Description ="Minimum allowable value.")] double dblMin,
+			[ExcelArgument(Name ="MaxValue",Description ="Maximum allowable value.")] double dblMax
+        )
+			
+        {
+			double dblLow = Math.Min(dblMin, dblMax);
+			double dblHigh = Math.Max(dblMin, dblMax);
 
-        // ==================== START of Private Method ====================
-        // Common routines for AbsMax and AbsMin functions
-        // =================================================================
-        //internal static 
+			return Math.Min(Math.Max(dblValue, dblLow), dblHigh);			
+        }
+		// -------------------- END of Function --------------------
+
+		// ==================== START of Function ====================
+		// Description for IntelliSense Tool Tips
+		[ExcelFunction(Description = "Checks whether a value lies between two limits. Returns a boolean.")]
+		public static bool C_IsBetween(
+			[ExcelArgument(Name = "Value", Description = "Value to compare against minimum and maximum.")] double dblValue,
+			[ExcelArgument(Name = "MinValue", Description = "First limit value.")] double dblLow,
+			[ExcelArgument(Name = "MaxValue", Description = "Second limit value.")] double dblHigh
+		)
+		{
+			double dblMin = Math.Min(dblLow, dblHigh);
+			double dblMax = Math.Max(dblLow, dblHigh);
+
+			// boolean comparison
+			return dblValue >= dblMin && dblValue <= dblMax;
+		}
+		// -------------------- END of Function --------------------
+
+		// ==================== START of Function ====================
+		// Description for IntelliSense Tool Tips
+		[ExcelFunction(Description = "Counts the number of unique values in a range.")]
+		public static int C_CountUnique(
+			[ExcelArgument(
+				AllowReference = false, // Don't use "AllowReference = true" for object arguments!!!
+				Name = "Range",
+				Description = "Cell range of values to count."
+			)]
+			object Range1
+		)
+		{
+			object[,] arrRange = Range1 as object[,];
+
+			if (arrRange == null)
+				return 1;
+
+			HashSet<string> arrUnique = new HashSet<string>();
+
+			foreach (object objValue in arrRange)
+			{
+				if (objValue == null)
+					continue;
+
+				string strValue = objValue.ToString();
+
+				if (strValue == "")
+					continue;
+
+				arrUnique.Add(strValue);
+			}
+
+			return arrUnique.Count;
+		}
+		// -------------------- END of Function --------------------
+ 
 
     } // ========== END Class ==========
 }   // ========== END Namespace ==========

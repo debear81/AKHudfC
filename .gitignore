@@ -13,7 +13,8 @@
 /.vs/
 .vscode/
 .idea/
-*.csproj*
+# *.csproj*
+# *.sln
 
 # Windows files
 ##############################
@@ -30,8 +31,9 @@ desktop.ini
 *.xll
 *.pdb
 
-# Backup and temp
+# Backup, Working Files, and Temp Files
 ##############################
 /*VOID*
 *.bak
 *BackupCopy.cs
+/_docs/working files

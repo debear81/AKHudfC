@@ -41,11 +41,11 @@ namespace AKHudfC
                 ExcelReference refVal = (ExcelReference)objArg;
                 return refVal.GetValue();
             }
-            catch (Exception ex)
+            //catch (Exception ex)
+            catch (Exception)
             {
-                int a = 0;
+                return 0;
             }
-            return 0;
         }
 
         // --------------------------------------------------------------------------------
@@ -104,25 +104,75 @@ namespace AKHudfC
                 throw new ArgumentException();  // Will return #VALUE to Excel
         }
 
+
+        // --------------------------------------------------------------------------------
+		// --------------------------------------------------------------------------------		
+		internal static object ObjGetForCompare(object arg)
+		{
+			if (arg == null)
+				return "";
+
+			if (arg is ExcelMissing)
+				throw new ArgumentException();
+
+			if (arg is ExcelEmpty)
+				return "";
+
+			if (arg is ExcelError)
+				return arg;
+
+			if (arg is string strArg)
+				return strArg.Trim();
+
+			if (arg is double dblArg)
+				return dblArg;
+
+			if (arg is bool bArg)
+				return bArg;
+
+			return arg.ToString().Trim();
+		}
+
+
+        // --------------------------------------------------------------------------------
+		// --------------------------------------------------------------------------------
+		internal static bool ObjMatch(object objValue, object objCriteria)
+		{
+			object objVal = ObjGetForCompare(objValue);
+			object objCrit = ObjGetForCompare(objCriteria);
+
+			if (objVal is double dblVal && objCrit is double dblCrit)
+				return dblVal == dblCrit;
+
+			return string.Equals(
+				objVal.ToString(),
+				objCrit.ToString(),
+				StringComparison.OrdinalIgnoreCase
+			);
+		}
+
+
+
         // --------------------------------------------------------------------------------
         // OVERLOADED Methods/Functions
         // Return the data type of an OBJECT argument
         //
         // FOR NOW...use a DYNAMIC data type to make it work for differnt argument data types
         // --------------------------------------------------------------------------------
-        internal static dynamic ObjGet(object arg)
-        {
-            Type T1 = arg.GetType();
+		internal static dynamic ObjGet(object arg)
+		{
+			if (arg is string)
+				return ((string)arg).Trim();
 
-            if (arg is string)
-                return (string)arg;
-            else if (arg is double)
-                return (double)arg;
-            else if (arg is ExcelMissing)
-                throw new ArgumentException();  // Will return #VALUE to Excel
-            else
-                throw new ArgumentException();  // Will return #VALUE to Excel
-        }
+			else if (arg is double)
+				return (double)arg;
+
+			else if (arg is ExcelMissing)
+				throw new ArgumentException();
+
+			else
+				throw new ArgumentException();
+		}
 
 
         // --------------------------------------------------------------------------------
@@ -200,7 +250,13 @@ namespace AKHudfC
         // check to see if optional argument, if present, is a 1d array (object[,])
         // The object array returned here may contain a mixture of types, reflecting the different cell contents.
         {
-            if (arg is Array)
+            if (arg is ExcelMissing)
+            {
+                string[] DefaultArr = new string[] { }; //empty array
+                //DefaultArr[0] = defaultValue;
+                return DefaultArr;
+            }
+            else if (arg is Array)
             {
                 //get size (row X col) of array
                 int iRows = arg.GetLength(0);
@@ -215,12 +271,6 @@ namespace AKHudfC
                     ArgArr[i] = (string)((object[])arg)[i];
                 }
                 return ArgArr;
-            }
-            else if (arg is ExcelMissing)
-            {
-                string[] DefaultArr = new string[] { }; //empty array
-                //DefaultArr[0] = defaultValue;
-                return DefaultArr;
             }
             else
                 throw new ArgumentException();  // Will return #VALUE to Excel
@@ -267,3 +317,7 @@ namespace AKHudfC
     // ==================== END of Class ====================
 
 } // ========== END Namespace ==========
+
+
+
+
