@@ -233,5 +233,38 @@ namespace AKHudfC
         }
         // -------------------- End of Helper Method -------------------- 
 
+
+        // ==================== START of Function ====================
+
+        // --------------------------------------------------------------
+        // Description for IntelliSense Tool Tip
+        // --------------------------------------------------------------
+		[ExcelFunction(IsMacroType = true, Description = "Wrapper for C_Formula to prepends an equals sign and/or optional label.")]
+		public static string C_FormulaEq(
+			[ExcelArgument(AllowReference = true, Name = "Cell", Description = "Cell containing formula.")]
+			object objFormula,
+
+			[ExcelArgument(AllowReference = false, Name = "Prefix", Description = "Optional text to place before the equals sign, such as units or a variable name.")]
+			object objPrefix
+		)
+		{
+			string strFormula = C_Formula(objFormula);
+
+			if (objPrefix is ExcelMissing || objPrefix is ExcelEmpty || objPrefix == null)
+			{
+				return "= " + strFormula;
+			}
+
+			string strPrefix = objPrefix.ToString().Trim();
+
+			if (strPrefix == "")
+			{
+				return "= " + strFormula;
+			}
+
+			return strPrefix + " = " + strFormula;
+		}
+		// -------------------- End of Function -------------------- 
+
     } // ==================== END of Class ====================
 } // ==================== END of Namespace ====================

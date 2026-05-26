@@ -12,12 +12,13 @@ All functions are prepended by ""C_"" for ease of location and input into cells.
 | 6	| C_CountUnique | Counts the number of unique cell values in a range.	|
 | 7	| C_FootToMix | Converts a number (assumed to be feet) to a mixed dimension string (ft-in).	|
 | 8	| C_Formula | Similar to FORMULATEXT function, returns string of referenced cell's equation, showing values. |
-| 9	| C_InchToMix | Converts a number (assumed to be inch) to a mixed dimension string (ft-in).	|
-| 10 | C_Indirect | Similar to INDIRECT function, but could access closed workbooks. |
-| 11 | C_IsBetween | Returns a true/false boolean, indicating if a value falls within a specified range. |
-| 12 | C_Linterp | Performs a linear interpolation, based on two known points (X, Y). |
-| 13 | C_MixToInch | Converts a mixed unit (ft-in) string to a decimal number of inches. |					
-| 14 | C_Mmatch | Returns the matching row number of a table, based on multiple criteria. |
-| 15 | C_RevStr | Reverses the order of a specified string. |
-| 16 | C_SheetName | Returns the worksheet name of the active cell. |
-| 17 | C_WorkbookName | Returns the workbook name of the active cell. |
+| 9	| C_FormulaEq | Wrapper for C_Formula to prepend an equals sign and an optional label/unit. |
+| 10 | C_InchToMix | Converts a number (assumed to be inch) to a mixed dimension string (ft-in).	|
+| 11 | C_Indirect | Similar to INDIRECT function, but could access closed workbooks. |
+| 12 | C_IsBetween | Returns a true/false boolean, indicating if a value falls within a specified range. |
+| 13 | C_Linterp | Performs a linear interpolation, based on two known points (X, Y). |
+| 14 | C_MixToInch | Converts a mixed unit (ft-in) string to a decimal number of inches. |					
+| 15 | C_Mmatch | Returns the matching row number of a table, based on multiple criteria. |
+| 16 | C_RevStr | Reverses the order of a specified string. |
+| 17 | C_SheetName | Returns the worksheet name of the active cell. |
+| 18 | C_WorkbookName | Returns the workbook name of the active cell. |
