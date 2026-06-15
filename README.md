@@ -1,6 +1,22 @@
+# AKHudfC add-in (XLL)
 This is a basic Excel add-in written with Csharp / ExcelDNA with the intent the assistance of the preparation of engineering calculations. It contains 17 User Defined Functions (UDFs). A few of the functions are not working as fully intended yet (see _docs folder for more information).
 
+## INSTALLATION
+1. After downloading and saving the XLL file, open Excel. 
+2. Click File --> Options. This will open the "Excel Options" dialog box.
+3. On the lefthand menu, click "Add-ins". Near the bottom, next to the "Manage [Excel Add-ins]" label, click "Go...". This will open the "Add-ins" dialog.
+4. Click "Browse..." and locate / select the XLLL file.
+
+The add-in inludes a ribbon tab with help and information regarding the use and capabilities of the add-in. Once loaded in the Excel environment, the tab should be visible.
+
+<p><img width="765" height="127" alt="image" src="https://github.com/user-attachments/assets/f8fbf50d-eab8-409a-a865-e89859c15acc" />
+</p>
+
+## FUNCTIONS
 All functions are prepended by ""C_"" for ease of location and input into cells.
+
+<p><img width="401" height="203" alt="image" src="https://github.com/user-attachments/assets/f872780c-e121-491d-bbb4-a8c1b26e7ca6" />
+</p>
 
 | # | Function | Description |
 |---:|----------|-------------|
