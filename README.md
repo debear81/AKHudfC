@@ -1,4 +1,4 @@
-# AKHudfC add-in (XLL)
+# Excel UDF Add-In (AKHudfC)
 This is a basic Excel add-in written with Csharp / ExcelDNA with the intent the assistance of the preparation of engineering calculations. It contains 17 User Defined Functions (UDFs). A few of the functions are not working as fully intended yet (see _docs folder for more information).
 
 ## INSTALLATION
